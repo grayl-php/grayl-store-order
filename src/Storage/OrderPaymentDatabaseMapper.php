@@ -158,7 +158,7 @@
                                   $row[ 'processor' ],
                                   $row[ 'amount' ],
                                   $row[ 'action' ],
-                                  (bool)$row[ 'successful' ],
+                                  (bool) $row[ 'successful' ],
                                   $row[ 'metadata' ] );
       }
 
@@ -208,7 +208,7 @@
                              'processor'    => $payment->getProcessor(),
                              'amount'       => $payment->getAmount(),
                              'action'       => $payment->getAction(),
-                             'successful'   => (int)$payment->isSuccessful(),
+                             'successful'   => (int) $payment->isSuccessful(),
                              'metadata'     => $payment->getMetadata(), ] )
                  ->into( $this->table );
 

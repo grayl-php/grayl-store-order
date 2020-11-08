@@ -3,10 +3,10 @@
    namespace Grayl\Store\Order;
 
    use Grayl\Config\ConfigPorter;
-   use Grayl\Config\Controller\ConfigController;
    use Grayl\Database\Main\DatabasePorter;
    use Grayl\Date\DatePorter;
    use Grayl\Mixin\Common\Traits\StaticTrait;
+   use Grayl\Store\Order\Config\OrderConfig;
    use Grayl\Store\Order\Controller\OrderController;
    use Grayl\Store\Order\Entity\OrderCustomer;
    use Grayl\Store\Order\Entity\OrderData;
@@ -36,14 +36,14 @@
        *
        * @var string
        */
-      private string $config_file = 'store.order.php';
+      private string $config_file = 'store-order.php';
 
       /**
        * The config instance for the package
        *
-       * @var ConfigController
+       * @var OrderConfig
        */
-      private ConfigController $config;
+      private OrderConfig $config;
 
 
       /**
@@ -55,8 +55,12 @@
       {
 
          // Create the config instance from the config file
-         $this->config = ConfigPorter::getInstance()
-                                     ->newConfigControllerFromFile( $this->config_file );
+         /** @var OrderConfig $config */
+         $config = ConfigPorter::getInstance()
+                               ->includeConfigFile( $this->config_file );
+
+         // Set the config for the class
+         $this->config = $config;
       }
 
 
@@ -260,9 +264,9 @@
       {
 
          // Create the service
-         return new OrderService( $this->config->getConfig( 'payment' )[ 'actions' ][ 'fail' ],
-                                  $this->config->getConfig( 'payment' )[ 'actions' ][ 'pending' ],
-                                  $this->config->getConfig( 'payment' )[ 'actions' ][ 'complete' ] );
+         return new OrderService( $this->config->getFailedPaymentActions(),
+                                  $this->config->getPendingPaymentActions(),
+                                  $this->config->getCompletedPaymentActions() );
       }
 
    }

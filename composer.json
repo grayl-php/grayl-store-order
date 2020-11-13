@@ -16,7 +16,7 @@
     }
   ],
   "type": "library",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "require": {
     "grayl/config": "^1",
     "grayl/database-main": "^1",

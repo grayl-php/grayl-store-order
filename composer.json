@@ -16,12 +16,12 @@
     }
   ],
   "type": "library",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "require": {
-    "grayl/config": "^1",
-    "grayl/database-main": "^1",
-    "grayl/date": "^1",
-    "grayl/mixin-common": "@dev",
+    "grayl/config": "^1.1",
+    "grayl/database-main": "^1.0",
+    "grayl/date": "^1.0",
+    "grayl/mixin-common": "^1.0",
     "php": "~7.4",
     "ext-bcmath": "*",
     "ext-openssl": "*"
